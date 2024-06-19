@@ -17,7 +17,7 @@ async def start(message:Message, state:  FSMContext):
     #await bot.send_photo(chat_id= message.chat.id, photo="images/IMG_1608.JPG", caption = "Hey!💘")
     #images = ['images/Иллюстрация_без_названия 9.jpg', 'images/IMG_1608.JPG']
     #await message.answer_photo(photo =FSInputFile(images[randint(0, 1)]))
-    await message.answer(text="Привет! Заполни анкету", reply_markup=form_button)
+    await message.answer(text="Привет! Заполни анкету!", reply_markup=form_button)
     await state.set_state(Form.wait)
     #await message.answer(text="Hey!💘", reply_markup=menu_button)
     #await state.set_state(Menu.to_menu)
