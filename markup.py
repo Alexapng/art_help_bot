@@ -60,7 +60,8 @@ ideas_button = ReplyKeyboardMarkup(
         [KeyboardButton(text="GM пост")],
         [KeyboardButton(text="GN пост")],
         [KeyboardButton(text="Рассуждения")],
-        [KeyboardButton(text="Shill")]
+        [KeyboardButton(text="Shill")],
+        [KeyboardButton(text="Бросить кубик")]
     ]
 )
 

@@ -7,6 +7,7 @@ from aiogram.fsm.context import FSMContext
 from states import Form, Menu
 from main import bot
 from random import randint
+from database import check_profile
 
 router=Router()
 
@@ -17,8 +18,12 @@ async def start(message:Message, state:  FSMContext):
     #await bot.send_photo(chat_id= message.chat.id, photo="images/IMG_1608.JPG", caption = "Hey!💘")
     #images = ['images/Иллюстрация_без_названия 9.jpg', 'images/IMG_1608.JPG']
     #await message.answer_photo(photo =FSInputFile(images[randint(0, 1)]))
-    await message.answer(text="Hey hey! Заполни анкету", reply_markup=form_button)
-    await state.set_state(Form.wait)
+    if not check_profile(message.from_user.id):
+        await message.answer(text="Hey hey! Заполни анкету", reply_markup=form_button)
+        await state.set_state(Form.wait)
+    else:
+        await message.answer(text="Hey!💘", reply_markup=menu_button)
+        await state.set_state(Menu.to_menu)
 
     # dice = await message.answer_dice()
     # print(dice.dice.value)
