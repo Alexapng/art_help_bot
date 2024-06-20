@@ -16,7 +16,12 @@ async def reply(message: Message, state: FSMContext):
 
 
         await message.answer(text="Welcome!👀\n\n В этом боте можно найти референсы для скетч-разминок, туториалы и кисти\n\n <b>Команды:</b>👇🏻\n\n /help - помощь\n /about - информация о боте", reply_markup=buttons_assist, parse_mode='html')
+        await state.set_state(Menu.menu)
+    else:
+        await message.answer(text='Переходи в /menu')
 
+@router.message(Menu.menu)
+async def reply(message: Message, state: FSMContext):
     if message.text.lower() in ["sketch warm up"]:
         images_1 = ['AgACAgIAAxkBAAICOGZtfZ4wj_ByIySz4fR7z4ejQIlpAAJG2DEbTHRoSxnU6kg_O0anAQADAgADeAADNQQ', 'AgACAgIAAxkBAAICMWZtezrKykFxnu4uu7rDFJkzdv-jAAJB2DEbTHRoS8PsRI9sF7VSAQADAgADeQADNQQ','AgACAgIAAxkBAAICOWZtfdBHEEnaAUE8oEZ8QaEuRHKRAAJN2DEbTHRoS6_sDrukrfSqAQADAgADeAADNQQ','AgACAgIAAxkBAAICRWZtf97P5o_dRIbVW3-PG3JtMGVwAAJY2DEbTHRoS2R3G9ey_lWgAQADAgADeQADNQQ']
         await (message.answer_photo(caption="<b>На один рисунок дается 5-7 минут. Попробуй заскетчить это👆🏻👀</b>\n", photo=images_1[randint(0, 3)],  parse_mode= "html" ))
@@ -70,3 +75,8 @@ async def post_ideas_func(message: Message, state: FSMContext):
         await message.answer(discussions[randint(0, 1)], reply_markup=chat_button)
 
 
+
+
+    if message.text.lower() in ["бросить кубик"]:
+        dice = await message.answer_dice()
+        print(dice.dice.value)
