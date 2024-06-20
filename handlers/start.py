@@ -19,9 +19,15 @@ async def start(message:Message, state:  FSMContext):
     #await message.answer_photo(photo =FSInputFile(images[randint(0, 1)]))
     await message.answer(text="Hey hey! Заполни анкету", reply_markup=form_button)
     await state.set_state(Form.wait)
+
+    # dice = await message.answer_dice()
+    # print(dice.dice.value)
+
     #await message.answer(text="Hey!💘", reply_markup=menu_button)
     #await state.set_state(Menu.to_menu)
+
     #await message.answer_location(latitude=40.41128727472991, longitude=-3.701609967337579)
+
 #     question = 'Do u listen to David Bowie?'
 #     options = ['Yes', 'Yes']
 #     await message.answer_poll(question=question, options=options, is_anonymous=False)
